@@ -32,6 +32,7 @@ public void nevigatetoautomationTesting(){
     public String getLoginPagetitile(){
         return page.title();
     }
+
     public String headlineofPage(){
         String text = page.locator("//h2[normalize-space()='Testing and Learning Hub']").textContent();
         System.out.println("Element Text: " + text);

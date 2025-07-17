@@ -41,10 +41,7 @@ public class Homepage {
         page.locator(depositButton).click();
     }
 
-    public boolean DepositmoneyEntryVisible(){
-        return  page.locator(depositEntry).isVisible();
 
-    }
 
 //    withdraw
     public void withdrawMoney(String amount){
