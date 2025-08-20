@@ -9,77 +9,56 @@ public class Homepage {
         this.page = page;
     }
 
-//    1.Locator
-    private String pageheading = "//h1[normalize-space()='Welcome to Your Bank']";
-    private String amountInput ="//input[@id='amount1']";
-    private String depositButton ="//button[@id='deposit1']";
-    private String balance = "//p[@id='balance1']";
-    private String withdrawButton = "//button[@id='withdraw1']";
-    private String depositEntry = "//ul[@id='history1']/li[span[contains(text(), 'Deposit of $1000.00')]]";
-    private String withdrawHistory = "//ul[@id='history1']/li[span[contains(text(), 'Withdrawal of $200.00')]]";
-    private String transferButton ="//button[@id='transfer1']";
-    private String transferhistory="//span[contains(text(),'Transfer of $100.00 to Account 0987654321')]";
-    private String transferhistoryuser2="//span[contains(text(),'Transferred $100.00 to Account 1234567890')]";
-    private String addinterestButton="//button[@id='interest1']";
-    private String resetButton="//button[@id='reset1']";
+    // Selectors
+    private final String headingSelector = "h1 span";
+    private final String descriptionSelector = ".BodyLgAccent-sc-1p88mi2";
+    public final String twitchButtonSelector = "a[href='/xpn/auth/login/twitch'] button";
+    public final String youtubeButtonSelector = "a[href='/xpn/auth/login/youtube'] button";
+    public final String tiktokButtonSelector = "a[href='/xpn/auth/login/tiktok'] button";
+    public final String twitterButtonSelector = "a[href='/xpn/auth/login/twitter'] button";
+    public final String emailButtonSelector = "a[href='/xpn/auth/login/email'] button";
 
 
 
 //    3.Method
 
-    public String getBalance(){
-        return page.locator(balance).textContent();
-    }
-    public String headlineofPage(){
-        String headerText = page.locator(pageheading).textContent();
-        System.out.println("Page Header: " + headerText);
-        return headerText;
-    }
-
-    public void DepositMoney(String amount){
-        page.locator(amountInput).fill(amount);
-        page.locator(depositButton).click();
-    }
-
-
-
-//    withdraw
-    public void withdrawMoney(String amount){
-        page.locator(amountInput).fill(amount);
-        page.locator(withdrawButton).click();
-    }
-    public boolean  WithdrawHistoryVisible(){
-        return page.locator(withdrawHistory).isVisible();
-
-    }
-
-//    transfer
-    public void transferMoney(String amount, String accountNumber) {
-        page.onceDialog(dialog -> {
-            dialog.accept(accountNumber);
-        });
-        page.locator(amountInput).fill(amount);
-        page.locator(transferButton).click();
-    }
-    public boolean isTransferSuccessful() {
-        return page.locator(transferhistoryuser2).isVisible() && page.locator(transferhistory).isVisible();
-    }
-
-//    interest
-
-    public void addinterest(){
-        page.locator(addinterestButton).click();
-    }
-
-//    ResetAccount
-public void resetAccount() {
-    // Step 1: Handle the confirmation dialog
-    page.onceDialog(dialog -> dialog.accept());
-    page.locator(resetButton).click();
-    };
 
     public void navigateToHomePage() {
         page.navigate("https://x.la/xpn");
+    }
+
+
+    // Actions
+    public String getHeadingText() {
+        return page.locator(headingSelector).textContent();
+    }
+
+    public String getDescriptionText() {
+        return page.locator(descriptionSelector).textContent();
+    }
+
+    public void clickTwitchButton() {
+        page.locator(twitchButtonSelector).click();
+    }
+
+    public void clickYouTubeButton() {
+        page.locator(youtubeButtonSelector).click();
+    }
+
+    public void clickTikTokButton() {
+        page.locator(tiktokButtonSelector).click();
+    }
+
+    public void clickTwitterButton() {
+        page.locator(twitterButtonSelector).click();
+    }
+
+    public void clickEmailButton() {
+        page.locator(emailButtonSelector).click();
+    }
+
+    public boolean isButtonVisible(String buttonSelector) {
+        return page.locator(buttonSelector).isVisible();
     }
 }
 

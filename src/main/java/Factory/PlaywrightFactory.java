@@ -56,7 +56,7 @@ public class PlaywrightFactory {
 
             browserContext = browser.newContext();
             page = browserContext.newPage();
-            page.navigate("https://x.la/xpn");
+            page.navigate("https://xla-stage.streamjar.io/xpn");
         }
         return page;
     }
