@@ -7,11 +7,15 @@ public class LoginPage {
     Page page;
 
     //    1.Locator
+    // Selectors
+    private final String emailInput = "input[name='username']";
+    private final String passwordInput = "input[name='password']";
+    private final String loginButton = "button[data-id='signin-form-button-login']";
+    //private final String errorMessage = ".error-message"; // Adjust according to actual error message selector
 
-    private String loginemail = "//input[@id='loginEmail']";
-    private String loginpassword = "//input[@id='loginPassword']";
-    private String loginButton = "//button[@id='signInBtn']";
-    private String getStarted_Autmation = "//a[@href='../WebAutomation/selenium.html']";
+    private String notificationSelector = ".xds-notification--warning";
+    private String errorMessage = ".sc-cwpsFg span";
+
 
 //    2.Constructor
     public LoginPage(Page page){
@@ -20,23 +24,25 @@ public class LoginPage {
 }
 
 //    3.Method
-public void nevigateToHomePage(){
-        page.locator(loginemail).fill("student@ittrainingbd.com");
-        page.locator(loginpassword).fill("ittrainingbd");
-    page.locator(loginButton).click(new Locator.ClickOptions().setForce(true));
+//  public void nevigateToHomePage(){
+//        page.locator(loginemail).fill("student@ittrainingbd.com");
+//        page.locator(loginpassword).fill("ittrainingbd");
+//        page.locator(loginButton).click(new Locator.ClickOptions().setForce(true));
 //        page.locator(loginButton).click();
-}
-public void nevigatetoautomationTesting(){
-        page.locator(getStarted_Autmation).click();
+//}
+    public void enterEmail(String email) {
+        page.fill(emailInput, email);
     }
-    public String getLoginPagetitile(){
-        return page.title();
+    public void enterPassword(String password) {
+        page.fill(passwordInput, password);
     }
 
-    public String headlineofPage(){
-        String text = page.locator("//h2[normalize-space()='Testing and Learning Hub']").textContent();
-        System.out.println("Element Text: " + text);
-        return text;
+    public void clickLoginButton() {
+        page.click(loginButton);
+    }
+
+    public String getErrorMessage() {
+        return page.textContent(errorMessage);
     }
 
 

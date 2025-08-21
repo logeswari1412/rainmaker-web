@@ -1,6 +1,7 @@
 package tests;
 
 import Factory.PlaywrightFactory;
+import Pages.DashboardPage;
 import Pages.Homepage;
 import Pages.LoginPage;
 import com.microsoft.playwright.Page;
@@ -13,6 +14,8 @@ public class BaseTest {
     protected Page page;
     protected Homepage homePage;
     protected LoginPage loginPage;
+
+    protected DashboardPage dashboardPage;
 
 
 

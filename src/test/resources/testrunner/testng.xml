@@ -6,7 +6,7 @@
     <test name="Banking-System Home Page Test_chrome">
         <classes>
 
-            <class name="tests.HomepageTest" />
+            <class name="tests.LoginPageTest" />
 
         </classes>
 
